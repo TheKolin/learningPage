@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Kurs Wordpress</title>
+    </head>
+    <body>
+        <section class="bg">
+            <h1>Kurs Wordpress</h1>
+            <i class="arrow"></i>
+            <span class="left"></span>
+            <span class="right"></span>
+        </section>
+        <div class="buttons">
+            <button value="1">Lekcja 1</button>
+            <button value="2">Lekcja 2</button>
+            <button value="3">Lekcja 3</button>
+        </div>
+        <div class="points">
+            Zdobyłeś 
+            <p>0/9</p> 
+            punktów
+        </div>
+        <section class="lesson lesson1">
+            <h3>Lekcja 1</h3>
+            <h5>Co to jest Wordpress?</h5>
+            <p>
+                <b>Wordpress</b> jest to system zarządzania treścią (ang. Content Management System - <b>CMS</b>) zaprojektowany głównie do obsługi blogów. Rozpowszechniany jest na licencji <b>GNU</b> (General Public License) i jest dostępny bezpłatnie.
+            </p>
+            <h5>Instalacja Wordpress</h5>
+            <p>
+                WordPress szczyci się 5-cio minutową instalacją, lecz nie oszukujmy się, czas instalacji zależy od umiejętności użytkownika, ktoś kto robi to pierwszy raz, może śmiało założyć że zajmie mu to ok godziny, ktoś kto instalował WordPressa już nie raz – potrzebuje na to 2 minut.
+            </p>
+            <p>
+                Pierwszą rzeczą o którą musimy zadbać aby móc zainstalować WordPressa, jest serwer www, z obsługą PHP 5.2.4 i MySQL 5.0.15 (lub nowszych).
+            </p>
+            <p>
+                Jeśli ktoś nie wie czy jego serwer spełnia wymagania, wystarczy że zapyta administrację serwera, lub jeśli ktoś umie, to może samemu to sprawdzić, poprzez stworzenie w głównym katalogu strony pliku o nazwie test.php, a w nim dodanie kodu – <b>&lt;?php phpinfo(); ?&gt;</b>. Następnie odpalamy ten plik poprzez przeglądarkę, czyli np. wywołując adres www.jakas-nasza-domena.pl/test.php – wtedy pokaże nam się sporo nic nam nie mówiących tabelek, z czego interesuje nas tylko to co na samej górze, czyli wersja php, która będzie zapisana np. tak: <b>PHP Version 5.2.6</b>
+            </p>
+            <p>
+                Oraz niżej, trzeba poszukać wersji MySQL, ja proponuję użyć dobrodziejstwa ctrl+f, i szukać po frazie mysql, a następnie w odpowiedniej tabelce szukamy wiersza z version – gdzie będziemy mieli zapisaną wersję MySQL, czyli np: <b>5.0.51a</b>
+            </p>
+            <p>
+                Pierwsze co musimy zrobić przed instalacją, to pobrać WordPressa. Na oficjalnej stronie jest <b>duży zielony przycisk</b>, który zawsze kieruje do najnowszej wersji WordPressa – korzystamy z niego i pobieramy spakowanego Wordpressa np. na pulpit. Następne co musimy zrobić to rozpakować go. Statystycznie większość użytkowników internetu korzysta z Windowsa, a w nim mamy już wbudowane narzędzie do rozpakowywania plików .zip, więc należy jedynie kliknąć na ściągnięty plik prawym przyciskiem myszy, i wybrać opcję <b>Wyodrębnij wszystkie…</b> , jeśli używamy np. WinRara, wtedy będziemy mieli opcję <b>Wypakuj tutaj</b>. Kiedy będziemy już posiadali wypakowane pliki WordPressa, należy je wysłać na serwer.
+            </p>
+            <p>
+                Metody instalacji WordPressa mamy dwie:
+            </p>
+            <ul>
+                <li>instalacja z edycją pliku wp-config.php</li>
+                <li>instalacja bez edytowania żadnych plików – wszelkie dane do połączenia z bazą podaje się podczas instalacji</li>
+            </ul>
+            <p>
+                Jako że druga metoda nie działa poprawnie na każdym serwerze, skupimy się głównie na pierwszej opcji.
+            </p>
+            <p>
+                W katalogu z WordPressem mamy plik <b>wp-config-sample.php</b>, kopiujemy ten plik do siebie na dysk, i zmieniamy mu nazwę na <b>wp-config.php</b>. Teraz trzeba wyposażyć się w jakiś edytor który obsługuje kodowanie UTF-8 bez BOM – zwykły notatnik z Windowsa nie obsługuje tego kodowania, ale już np. <b>Notepad++</b>, jak najbardziej tak. Jeśli jesteśmy już wyposażeni w odpowiednie narzędzie, zabieramy się za edycje pliku wp-config.php, w przypadku Notepad++ , wystarczy kliknąć prawym przyciskiem myszy na edytowany plik, i wybrać opcję <b>Edit with Notepad++</b>. W kodzie odszukujemy takie linijki i uzupełniamy danymi naszego serwera:
+            </p>
+            <p>
+                <ul>
+                    <li>
+                        <b>define(‚DB_NAME’, ‚nazwa_bazy_danych’);</b> - Nazwa naszej bazy danych
+                    </li>
+                    <li>
+                        <b>define(‚DB_USER’, ‚nazwa_uzytkownika’);</b> - Nazwa użytkownika bazy danych
+                    </li>
+                    <li>
+                        <b>define(‚DB_PASSWORD’, ‚haslo’);</b> - Hasło do naszej bazy
+                    </li>
+                    <li>
+                        <b>define(‚DB_HOST’, ‚localhost’);</b> - Adres naszej bazy danych
+                    </li>
+                </ul>
+            </p>
+            <p>
+                I uzupełniamy je wedle danych z naszego serwera. Jeżeli nie wiemy co tam należy wpisać, albo po wpisaniu danych otrzymujemy później komunikat Error establishing a database connection – należy napisać do administratora swojego hostingu, i poprosić go o pomoc.
+            </p>
+            <p>
+                Powinny nas również zainteresować linijki:
+            </p>
+            <ul>
+                <li>
+                    <b>$table_prefix  = ‚wp_’;</b> - Prefix bazy danych
+                </li>
+                <li>
+                    <b>define(‚WPLANG’, ‚pl_PL’);</b> - Wybór języka
+                </li>
+            </ul>
+            </p>
+            <p>
+                Jeżeli to jest nasz pierwszy WordPress, albo nie mamy pojęcia co oznacza prefix to zostawmy bez zmian.
+            </p>
+            <p>
+                Na sam koniec upewniamy się że używamy poprawnego kodowania, w tym celu klikamy u góry w menu w <b>Format</b>, i tam powinna być zaznaczona opcja – <b>UTF-8 bez BOM</b>. Jeżeli jest zaznaczone co innego, to zaraz to zmienimy, ale wpierw szybki zabieg który pozwoli nam ustrzec nasze dane przed pojawianiem się krzaków – wracamy kursorem do kodu, następnie klikamy kombinację klawiszy ctrl + a, a potem ctrl + c ( czyli zaznacz wszystko, a potem kopiuj ), teraz wybieramy u góry Format i wybieramy poprawne formatowanie, po czym wracamy do kodu i tym razem klikamy ctrl + a, a potem ctrl + v ( czyli zaznacz wszystko oraz wklej ). Na końcu zapisujemy zmiany, tutaj także można użyć skrótu ctrl + s.
+            </p>
+            <p>
+                Tak edytowany plik wp-config.php wysyłamy na serwer.
+            </p>
+            <p>
+                Ostatnim krokiem jest uruchomienie instalacji. W tym celu należy odpalić instalację poprzez wpisanie adresu strony w przeglądarce, w zależności czy pliki WordPressa wrzuciliśmy do głównego katalogu domeny, czy też do podkatalogu, adres powinien wyglądać tak:
+            </p>
+            <ul>
+                <li>
+                    <b>http://www.nasza-domena.pl/wp-admin/install.php</b>
+                </li>
+                <li>
+                    <b>http://www.nasza-domena.pl/wordpress/wp-admin/install.php</b>
+                </li>
+            </ul>
+            <p>
+                Po uruchomieniu instalacji postępujemy zgodnie z instrukcją, czyli podajemy takie informacje jak tytuł bloga czy login i hasło głównego konta administracyjnego. Po szybkim przebrnięciu przez kreatora, możemy się w końcu zalogować do naszego WordPressa
+            </p>
+        </section>
+        <div class="spacer"></div>
+        <section>
+            <h3>Test z lekcji 1</h3>
+            <div class="test test1">
+                <p>System zarządzania treścią to w skrócie:</p>
+                <button>PHP</button>
+                <button>GNU</button>
+                <button value="1">CMS</button>
+                <button>Wordpress</button>
+            </div>
+            <div class="test test2">
+                <p>Jak nazywa się plik konfiguracyjny wordpress?</p>
+                <button>wp-config.js</button>
+                <button value="1">wp-config.php</button>
+                <button>wp-config-sample.php</button>
+                <button>install.php</button>
+            </div>
+            <div class="test test3">
+                <p>Jaki format kodowania znaków wybieramy w pliku konfiguracyjnym?</p>
+                <button value="1">UTF-8 bez BOM</button>
+                <button>UTF-8</button>
+                <button>Windows 1280</button>
+                <button>Format</button>
+            </div>
+            <div class="test test4">
+                <p>Po wpisaniu niepoprawnych danych naszej bazy:</p>
+                <button>Nic się nie stanie</button>
+                <button>Połączymy się z domyślną bazą</button>
+                <button value="1">Otrzymamy błąd</button>
+                <button>Przekieruje nas bezpośrednio na naszego bloga</button>
+            </div>
+        </section>
+        <div class="spacer"></div>
+        <section class="lesson lesson2">
+            <h3>Lekcja 2</h3>
+            <h5>Co to jest motyw i po co się go stosuje?</h5>
+            <p>
+                <b>Motyw WordPressa</b> to odpowiedni zestaw plików, które należy zainstalować, aby twoja strona wyświetliła się prawidłowo i który odpowiada za wygląd twojej strony. Kiedy instalujesz nową stronę, to w paczce z WordPressem otrzymujesz kilka domyślnych szablonów, takich jak <b>Twenty Fifteen</b>. Gdyby nie szablony, wszystkie strony oparte na WordPressie wyglądałyby tak samo. To byłoby strasznie nudne. Na szczęście tak nie jest, a ty możesz wybrać spośród tysięcy motywów taki, który ci odpowiada.
+            </p>
+            <h5>Skąd pobrać szablony WordPressa?</h5>
+            <p>
+                Szablon WordPressa możesz wykonać na zamówienie u specjalisty, druga opcja to instalacja darmowego motywu z oficjalnej strony. Wystarczy wejść na stronę WordPressa i wybrać taki, który ci się spodoba i będzie najlepiej pasował do tego, co umieścisz na swoim blogu. <b>Za taki motyw nie zapłacisz nawet złotówki</b> i być może na początku przygody z WordPressem będzie to dla ciebie najlepsza opcja. 
+            </p>
+            <h5>Instalacja i konfiguracja motywu WordPress</h5>
+            <p>
+                <ul>
+                    <li>Zaloguj się do swojej strony i przejdź do <b>Kokpitu</b>. Znajdziesz tam zakładkę Wygląd->Motywy</li>
+                    <li>Następnie kliknij <b>dodaj nowy…</b></li>
+                    <li>Zwróć uwagę, że w tym miejscu możesz też załadować zakupiony i pobrany wcześniej szablon klikając <b>Wyślij motyw na serwer</b>. Jeśli chcesz wybrać darmowy, możesz użyć wyszukiwania i filtra właściwości, aby znaleźć taki motyw, jaki ci odpowiada.</li>
+                    <li>Kiedy już znajdziesz szablon dla siebie, kliknij <b>Zainstaluj…</b></li>
+                    <li>Po przeniesieniu na kolejny ekran <b>Włącz</b> swój motyw. Możesz po tym przejść do personalizacji swojego szablonu.</li>
+                    <li>W lewej części okna znajdziesz zestaw opcji, których zmianę obsługuje twój nowy motyw. Dokonanie personalizacji jest bardzo intuicyjne, pamiętaj tylko, żeby zapisać zmiany. Kiedy przejdziesz na swoją stronę główną, powinieneś zobaczyć ją już w nowej odsłonie.</li>
+                </ul>
+            </p>
+            <h5>Wybór szablonu dla naszego WordPressa</h5>
+            <p>
+                Wszystkie szablony oferowane w centralnej bazie szablonów Wordpress są darmowe. Ich najważniejszą wadą jest brak unikalności, wynikający z tego, że ma do nich dostęp każdy użytkownik. Są one także często powielane, chociaż coraz więcej użytkowników decyduje się na ich <b>edycję zaawansowaną</b>.
+            </p>
+            <p>
+                Aby uniknąć tego typu sytuacji, a zarazem przyciągnąć szersze grono odbiorców, którzy docenią także wygląd Twojej strony WWW, możesz skorzystać z licznych rozwiązań, jak np. programów do tworzenia szablonów stron WWW, kupić gotowe, ale zarazem płatne szablony lub jak wskazaliśmy wyżej, edytować wybrany szablon, dopasowując go do swoich potrzeb i dbając o unikalny wygląd strony WWW.
+            </p>
+        </section>
+        <div class="spacer"></div>
+        <section>
+            <h3>Test</h3>
+            <div class="test test5">
+                <p>Co to jest motyw?</p>
+                <button value="1">Zestaw plików odpowiadających za wygląd strony</button>
+                <button>Baza darmowych szablonów</button>
+                <button>Wtyczka, którą możemy zainstalować</button>
+                <button>Edytor wyglądu naszej strony</button>
+            </div>
+            <div class="test test6">
+                <p>Jaka jest największa wada motywów oferowanych w bazie Wordpress?</p>
+                <button>Brak możliwości edycji motywu</button>
+                <button>Wysoka cena</button>
+                <button>Mała liczba dotępnych motywów</button>
+                <button value="1">Brak unikalności</button>
+            </div>
+        </section>
+        <div class="spacer"></div>
+        <section class="lesson lesson3">
+            <h3>Lekcja 3</h3>
+            <h5>Co to jest wtyczka WordPress?</h5>
+            <p>
+                <b>Wtyczka</b> to oprogramowanie, które rozszerza funkcjonalność motywu WordPress. Pozwala to na dodanie wielu funkcji do witryny bez programowania.
+            </p>
+            <p>
+                Wtyczki mogą być tłumaczone na język polski również jako <b>moduły</b>. W niektórych programach mogą być również określane jako addon, plugin, dodatek, rozszerzenie.
+            </p>
+            <h5>Jak zainstalować wtyczkę w WordPressie</h5>
+            <p>
+                Aby zainstalować nowy moduł, wybierz <b>Wtyczki</b>, a następnie <b>Dodaj nowy</b> w administracji Wordpressa. Innym sposobem jest kliknięcie <b>Wtyczki</b> w administracji, a następnie kliknięcie <b>Dodaj nowy</b> na górze strony.
+            </p>
+            <p>
+                Klikając Dodaj nowy, otworzy się nowa lista wtyczek z oficjalnej witryny <b>WordPress.org</b>. Możesz filtrować tę listę według zalecanych, popularnych lub ulubionych modułów.
+            </p>
+            <p>
+                Możesz wyświetlić funkcje każdego modułu, klikając nazwę lub klikając łącze <b>Szczegóły</b>. Otworzy się okno pokazujące funkcje oferowane przez moduł. Znajdziesz tu również informacje o jego autorze i dacie ostatniej aktualizacji. Kliknij <b>Zainstaluj teraz</b>, aby zainstalować wybrany moduł. Spowoduje to automatyczną instalację na stronie WordPress.
+            </p>
+            <p>
+                Następnie każdy moduł musi zostać aktywowany. Użyj przycisku <b>Aktywuj</b> dla tego kroku. W przypadku niektórych modułów znajdziesz także ustawienia, które będziesz musiał skonfigurować. Zainstalowany moduł pojawi się na liście wtyczek w Twojej witrynie.
+            </p>
+            <h5>Aktualizacja</h5>
+            <p>
+                Jeśli dostępna jest aktualizacja jednego z używanych modułów, WordPress powiadomi Cię o tym, wyświetlając <b>numer</b> obok „Wtyczki” w menu WordPress.
+            </p>
+            <p>
+                Na liście rozszerzeń można również znaleźć wiadomość o aktualizacji dostępną z linkiem do aktualizacji. System powiadomi Cię, gdy aktualizacja się powiedzie.
+            </p>
+            <h5>Dezaktywacja i usuwanie</h5>
+            <p>
+                Możesz znaleźć link do dezaktywacji wtyczki na liście modułów poniżej nazwy modułu. Aby dezaktywować wtyczkę, kliknij <b>Dezaktywuj</b>. Jeśli masz moduł na swojej stronie, który jest wyłączony i nie korzystałeś z niego przez dłuższy czas, musisz go usunąć. Aby to zrobić, kliknij link <b>Usuń</b> pod nazwą modułu.
+            </p>
+        </section>
+        <div class="spacer"></div>
+        <section>
+            <h3>Test</h3>
+            <div class="test test7">
+                <p>Co to jest wtyczka?</p>
+                <button>Witryna z modułami</button>
+                <button value="1">Rozszerzenie funkcjonalności naszej strony</button>
+                <button>Część motywu</button>
+                <button>Informacje o autorze i dacie ostaniej aktualizacji strony</button>
+            </div>
+            <div class="test test8">
+                <p>Jaki język programowania potrzeby jest do używania wtyczek</p>
+                <button>JavaScript</button>
+                <button>HMTL</button>
+                <button>Oba powyższe</button>
+                <button value="1">Żaden</button>
+            </div>
+            <div class="test test9">
+                <p>Jak usunąc zainstalowaną wtyczkę?</p>
+                <button>Kontaktując się z administratorem serwera</button>
+                <button>Kontaktując się z twórcą wtyczki</button>
+                <button>Nie można usunąc już zainstalowanej wtyczki</button>
+                <button value="1">Klikając przycisk Usuń</button>
+            </div>
+        </section>
+        <div class="spacer"></div>
+        <section>
+            <p>
+                Wykonał Marcin Łukasiewicz
+            </p>
+        </section>
+        <script src="script.js"></script>
+    </body>
+</html>
